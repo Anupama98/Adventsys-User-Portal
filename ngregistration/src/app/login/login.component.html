@@ -1,0 +1,45 @@
+<body>
+    <div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form #loginform="ngForm" id="login-form" class="form" action="" method="post">
+                            <!--{{loginform.form.valid}}
+                            <small class="text-danger">{{msg}}</small>
+                                -->
+                            <div class="form-group">
+                                <label for="email" class="text-info">Email:</label><br>
+                                <input type="email" class="form-control" placeholder="Enter email" name="email" [(ngModel)]="user.emailId" required 
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel"
+                                [class.is-invalid]="email.invalid && email.touched"
+                                >
+                                <!--<small class="text-danger" [class.d-none]="email.valid || email.untouched">Email Id is required</small>-->
+                                <div *ngIf="email.errors && (email.invalid && email.touched) ">
+                                    <small class="text-danger" *ngIf="email.errors.required">Email id is required to login</small>
+                                    <small class="text-danger" *ngIf="email.errors.pattern">Enter the valid email id</small>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="password" class="form-control" type="password" placeholder="Enter password" name="password" [(ngModel)]="user.password" required #password="ngModel"
+                                [class.is-invalid]="password.invalid && password.touched"
+                                > 
+                                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                
+                                <input type="submit" [disabled]="loginform.form.invalid" (click)="loginUser()" name="submit" class="btn btn-info btn-md" value="submit">
+                                <small class="float-right">New user?<span class="text-primary" (click)="gotoregistration()"> Register here </span></small>
+                            </div>
+                      
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
